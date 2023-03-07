@@ -9,9 +9,22 @@ const registeredUsers = [
 
 const Users = () => {
   return (
-    <div className="container mx-auto px-4">
-      <UserGrid users={registeredUsers} />
+    <>
+      <div className="flex justify-between items-center">
+    <div>
+      <h1>Brugere</h1>
     </div>
+    <div className="flex">
+      <input type="text" placeholder="Search" className="border p-2 mr-2" />
+      <button className="bg-blue-500 text-white px-4 py-2 rounded">
+        Søg
+      </button>
+    </div>
+  </div>
+  <div className="container mx-auto px-4 mt-10">
+    <UserGrid users={registeredUsers} />
+  </div>
+    </>
   );
 }
 
