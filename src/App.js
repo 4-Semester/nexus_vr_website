@@ -16,8 +16,8 @@ export default function App() {
     </div>
       <main className="flex-grow p-4">
         <Routes>
-        <Route path="/Components/Users" element={<Users/>} />
-          <Route path="/Components/Experience" element={<Experience/>} />
+        <Route path="/Users" element={<Users/>} />
+          <Route path="/Experience" element={<Experience/>} />
         </Routes>
       </main>
     </div>

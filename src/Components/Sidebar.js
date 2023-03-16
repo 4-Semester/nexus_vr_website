@@ -1,6 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 
 export function Sidebar () {
+  const location = useLocation();
+
+
     return (
       <div className="flex flex-col w-64 h-screen bg-gray-800">
         {/* Sidebar header */}
@@ -8,13 +11,13 @@ export function Sidebar () {
           <span className="text-white text-lg font-bold">NexusVR</span>
         </div>
         {/* Sidebar content */}
-        <div className="flex-grow p-4 overflow-y-auto">
+        <div className="flex-grow py-4 overflow-y-auto">
           <ul className="text-white">
-          <li className="py-2 hover:bg-gray-700">
-                <Link to="/Components/Users" className="block py-2 text-white hover:text-gray-200 w-full">Brugere</Link>
+          <li className={location.pathname=='/Users'?'py-2 bg-gray-700':'py-2 hover:bg-gray-700'}>
+                <Link to="/Users" className="block p-2 w-full">Brugere</Link>
             </li>
-            <li className="py-2 hover:bg-gray-700">
-                <Link to="/Components/Experience" className="block py-2 text-white hover:text-gray-200 w-full">Oplevelser</Link>
+            <li className={location.pathname=='/Experience'?'py-2 bg-gray-700':'py-2 hover:bg-gray-700'}>
+                <Link to="/Experience" className="block p-2 w-full">Oplevelser</Link>
             </li>
           </ul>
         </div>
