@@ -1,28 +1,41 @@
-import { useState } from "react";
+import { useState } from 'react';
+import axios from 'axios';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevFormData => ({
+    setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Her skal vi sende dataen til vores backend
+
+    // Validate the form data (e.g., checking password and confirmPassword match)
+    // ...
+
+    try {
+      const response = await axios.post('https://api.example.com/register', formData);
+      console.log(response.data);
+      // You can handle the response here (e.g., show a success message or redirect the user)
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle the error (e.g., show an error message)
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+       <label>
         Brugernavn:
         <input
           type="text"
@@ -65,5 +78,6 @@ function RegisterForm() {
       <button type="submit">Registrer</button>
     </form>
   );
-  }
 }
+
+export default RegisterForm;

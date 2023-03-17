@@ -11,7 +11,7 @@ export default function App() {
     <>
     
     <div className="flex">
-    <div>
+    <div className='flex min-h-screen bg-gray-200'>
       <Sidebar />
     </div>
       <main className="flex-grow p-4">
