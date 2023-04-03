@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import UserGrid from './UserGrid';
 
 const registeredUsers = [
-  { id: 1, name: 'Patrick Bateman', avatar: 'https://d1e00ek4ebabms.cloudfront.net/production/9b2bdcdf-448f-4705-84e9-179bc3cbf4a0.jpg', bio: 'Beskrivelse.' },
-  { id: 2, name: 'Lars Andersen', avatar: 'https://img-cdn-p.ekstrabladet.dk/image/ekstrabladet/3562960/relationBig/?at=c2244694ced01a0e57c19ee7bb60ca8c', bio: 'Beskrivelse.' },
-  { id: 3, name: 'Jens Lauritsen', avatar: 'https://www.wiwo.de/images/02_pol_iv-hoppe-jpg/9282206/3-format1001.jpg', bio: 'Beskrivelse.' },
-  { id: 4, name: 'Ryan Gosling', avatar: 'https://i.guim.co.uk/img/static/sys-images/Guardian/About/General/2011/9/14/1315997543282/ryan-gosling-in-drive-007.jpg?width=465&quality=85&dpr=1&s=none', bio: 'Beskrivelse.' },
+  { id: 1, name: 'Bruger1', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
+  { id: 2, name: 'Bruger2', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
+  { id: 3, name: 'Bruger3', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
+  { id: 4, name: 'Bruger4', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
 ];
 
 const Users = () => {
