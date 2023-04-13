@@ -21,29 +21,29 @@ const Users = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center">
-        <div>
-          <h1>Brugere</h1>
-        </div>
-        <div className="flex">
-          <input
-            type="text"
-            placeholder="Search"
-            className="border p-2 mr-2"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-          />
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-            onClick={handleSearch}
-          >
-            Søg
-          </button>
-        </div>
-      </div>
-      <div className="container mx-auto px-4 mt-10">
+     <div className="flex justify-end">
+  <div className="flex">
+    <div className="ml-auto">
+      <input
+        type="text"
+        placeholder="Search"
+        className="border p-2 mr-2"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+    </div>
+    <button
+      className="bg-blue-500 text-white px-4 py-2 rounded"
+      onClick={handleSearch}
+    >
+      Søg
+    </button>
+     </div>
+    </div>
+
+   <div className="container mx-auto px-4 mt-10">
         <UserGrid users={filteredUsers} />
-      </div>
+   </div>
     </>
   );
 };

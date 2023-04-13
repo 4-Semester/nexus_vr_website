@@ -1,17 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
 import './Components/Sidebar';
 import Sidebar from './Components/Sidebar';
 import { Route, Routes} from "react-router-dom";
 import Experience from './Components/Experience/Experience';
 import Users from './Components/Users/Users';
 
+
 export default function App() {
   return (
     <>
     
     <div className="flex">
-    <div className='flex min-h-screen bg-gray-200'>
+    <div className='flex min-h-screen'>
       <Sidebar />
     </div>
       <main className="flex-grow p-4">
