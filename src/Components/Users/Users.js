@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UserGrid from './UserGrid';
-
-const registeredUsers = [
-  { id: 1, name: 'Bruger1', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
-  { id: 2, name: 'Bruger2', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
-  { id: 3, name: 'Bruger3', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
-  { id: 4, name: 'Bruger4', avatar: 'https://i.pinimg.com/170x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg', bio: 'Beskrivelse.' },
-];
+import axios from 'axios';
 
 const Users = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredUsers, setFilteredUsers] = useState(registeredUsers);
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://api.nexusvr.tech/schema/swagger')
+      .then(response => {
+        setUsers(response.data);
+        setFilteredUsers(response.data); // set filteredUsers to initial list of users
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
   const handleSearch = () => {
-    const filtered = registeredUsers.filter(user =>
+    const filtered = users.filter(user =>
       user.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredUsers(filtered);
@@ -21,29 +27,29 @@ const Users = () => {
 
   return (
     <>
-     <div className="flex justify-end">
-  <div className="flex">
-    <div className="ml-auto">
-      <input
-        type="text"
-        placeholder="Search"
-        className="border p-2 mr-2"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-    </div>
-    <button
-      className="bg-blue-500 text-white px-4 py-2 rounded"
-      onClick={handleSearch}
-    >
-      Søg
-    </button>
-     </div>
-    </div>
+      <div className="flex justify-end">
+        <div className="flex">
+          <div className="ml-auto">
+            <input
+              type="text"
+              placeholder="Search"
+              className="border p-2 mr-2"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={handleSearch}
+          >
+            Søg
+          </button>
+        </div>
+      </div>
 
-   <div className="container mx-auto px-4 mt-10">
+      <div className="container mx-auto px-4 mt-10">
         <UserGrid users={filteredUsers} />
-   </div>
+      </div>
     </>
   );
 };
