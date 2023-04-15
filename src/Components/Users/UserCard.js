@@ -6,7 +6,6 @@ const UserCard = ({ user }) => {
       <img className="w-full" src={user.avatar} alt={user.name} />
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{user.name}</h2>
-        <p className="text-gray-700 text-base">{user.bio}</p>
         <button className="btn btn-primary active:bg-on-primary focus:bg-primary">Tryk</button>
       </div>
     </div>

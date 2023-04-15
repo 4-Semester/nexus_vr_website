@@ -12,12 +12,12 @@ export function Sidebar() {
       {/* Sidebar content */}
       <div className="flex-grow py-4 overflow-y-auto">
         <ul className="text-white">
-          <li className={location.pathname == '/Users' ? 'py-2 bg-gray-700' : 'py-2 hover:bg-gray-700'}>
+          <li className={location.pathname === '/Users' ? 'py-2 bg-gray-700' : 'py-2 hover:bg-gray-700'}>
             <Link to="/Users" className="block p-2 w-full">
               Brugere
             </Link>
           </li>
-          <li className={location.pathname == '/Experience' ? 'py-2 bg-gray-700' : 'py-2 hover:bg-gray-700'}>
+          <li className={location.pathname === '/Experience' ? 'py-2 bg-gray-700' : 'py-2 hover:bg-gray-700'}>
             <Link to="/Experience" className="block p-2 w-full">
               Oplevelser
             </Link>

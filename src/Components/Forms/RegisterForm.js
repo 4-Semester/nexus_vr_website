@@ -3,7 +3,6 @@ import axios from 'axios';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -20,31 +19,22 @@ function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate the form data (e.g., checking password and confirmPassword match)
-    // ...
 
     try {
-      const response = await axios.post('https://api.example.com/register', formData);
+      const response = await axios.post('https://api.nexusvr.tech/register', {
+        email: formData.email,
+        password: formData.password,
+      });
       console.log(response.data);
-      // You can handle the response here (e.g., show a success message or redirect the user)
+
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Handle the error (e.g., show an error message)
+
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-       <label>
-        Brugernavn:
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
       <label>
         Email:
         <input
