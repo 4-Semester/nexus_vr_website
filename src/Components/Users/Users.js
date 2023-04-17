@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import UserGrid from './UserGrid';
 import axios from 'axios';
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import firestore from '../../Firebase';
 
 const Users = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  /*useEffect(() => {
-    axios.get('https://api.nexusvr.tech/schema/swagger')
-      .then(response => {
-        setUsers(response.data);
-        setFilteredUsers(response.data); // set filteredUsers to initial list of users
-      })
-      .catch(error => {
-        console.error(error);
+  useEffect(() => {
+    const usersCollection = collection(firestore, "users");
+    const usersQuery = query(usersCollection, orderBy("name"));
+    const unsubscribe = onSnapshot(usersQuery, (snapshot) => {
+      const newUsers = snapshot.docs.map((doc) => {
+        const userData = doc.data();
+        return {
+          id: doc.id,
+          name: userData.name,
+        };
       });
-  }, []);*/
+      
+        console.log(newUsers);
+        setUsers(newUsers, console.log(newUsers));
+        
+    });
+
+    return () => {
+        unsubscribe();
+    };
+}, []);
 
   const handleSearch = () => {
     const filtered = users.filter(user =>
@@ -48,7 +61,7 @@ const Users = () => {
       </div>
 
       <div className="container mx-auto px-4 mt-10">
-        <UserGrid users={filteredUsers} />
+      <UserGrid users={filteredUsers.length > 0 ? filteredUsers : users} />
       </div>
     </>
   );
