@@ -26,7 +26,6 @@ export default function App() {
           <Route path="/" element={<LoginForm/>} />
           <Route path="/Experience" element={<Experience/>} />
           <Route path="/Register" element={<RegisterForm/>} />
-          <Route path="/" element={<LoginForm/>} />
         </Routes>
       </main>
     </div>

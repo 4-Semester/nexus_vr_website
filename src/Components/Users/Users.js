@@ -7,7 +7,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     axios.get('https://api.nexusvr.tech/schema/swagger')
       .then(response => {
         setUsers(response.data);
@@ -16,7 +16,7 @@ const Users = () => {
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  }, []);*/
 
   const handleSearch = () => {
     const filtered = users.filter(user =>
