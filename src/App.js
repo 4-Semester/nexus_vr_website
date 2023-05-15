@@ -5,7 +5,7 @@ import Experience from './Components/Experience/Experience';
 import Users from './Components/Users/Users';
 import RegisterForm from './Components/Forms/RegisterForm';
 import LoginForm from './Components/Forms/LoginForm';
-
+import VerifyForm from './Components/Forms/VerifyForm';
 export default function App() {
   const location = useLocation();
 
@@ -22,10 +22,11 @@ export default function App() {
         )}
       <main className="flex-grow p-4">
         <Routes>
-        <Route path="/Users" element={<Users/>} />
+        <Route path="/users" element={<Users/>} />
           <Route path="/" element={<LoginForm/>} />
-          <Route path="/Experience" element={<Experience/>} />
-          <Route path="/Register" element={<RegisterForm/>} />
+          <Route path="/experiences" element={<Experience/>} />
+          <Route path="/register" element={<RegisterForm/>} />
+          <Route path="/verify" element={<VerifyForm/>} />
         </Routes>
       </main>
     </div>

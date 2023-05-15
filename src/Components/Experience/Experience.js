@@ -8,7 +8,7 @@ const Experience = () => {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const response = await axios.get('https://api.example.com/users');
+        const response = await axios.get('https://api.nexusvr.tech/experiences', {headers: {Authorization: localStorage.getItem('token')}});
         setExperiences(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
