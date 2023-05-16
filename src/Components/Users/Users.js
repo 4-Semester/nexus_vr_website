@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserGrid from './UserGrid';
 import axios from 'axios';
-import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import firestore from '../../Firebase';
+
 
 const Users = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -10,26 +9,18 @@ const Users = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
-    const usersCollection = collection(firestore, "users");
-    const usersQuery = query(usersCollection, orderBy("name"));
-    const unsubscribe = onSnapshot(usersQuery, (snapshot) => {
-      const newUsers = snapshot.docs.map((doc) => {
-        const userData = doc.data();
-        return {
-          id: doc.id,
-          name: userData.name,
-        };
-      });
-      
-        console.log(newUsers);
-        setUsers(newUsers, console.log(newUsers));
-        
-    });
-
-    return () => {
-        unsubscribe();
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('https://api.nexusvr.tech/users', {headers: {Authorization: localStorage.getItem('token')}});
+        setUsers(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
-}, []);
+
+    fetchUsers();
+  }, []);
+
 
   const handleSearch = () => {
     const filtered = users.filter(user =>
@@ -59,7 +50,6 @@ const Users = () => {
           </button>
         </div>
       </div>
-
       <div className="container mx-auto px-4 mt-10">
       <UserGrid users={filteredUsers.length > 0 ? filteredUsers : users} />
       </div>
