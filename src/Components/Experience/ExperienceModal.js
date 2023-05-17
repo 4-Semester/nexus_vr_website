@@ -1,6 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
-const ExperienceModal = () => {
+const ExperienceModal = ({fetchExperiences }) => {
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -22,6 +22,7 @@ const ExperienceModal = () => {
             }
         }).then((res) => {
             console.log(res);
+            fetchExperiences();
         }).catch((err) => {
             console.log(err);
         });

@@ -6,20 +6,27 @@ const Experience = () => {
   const [experiences, setExperiences] = useState([]);
 
 
-  const removeExperience = (id) => {
-    setExperiences(experiences.filter(experience => experience.id !== id));
-  }
+  const deleteExperience = async (id) => {
+    try {
+      await axios.delete(`https://api.nexusvr.tech/experiences/${id}`, {
+        headers: { Authorization: localStorage.getItem('token') },
+      });
+      fetchExperiences(); 
+    } catch (error) {
+      console.error('Error deleting experience:', error);
+    }
+  };
+
+  const fetchExperiences = async () => {
+    try {
+      const response = await axios.get('https://api.nexusvr.tech/experiences', {headers: {Authorization: localStorage.getItem('token')}});
+      setExperiences(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchExperiences = async () => {
-      try {
-        const response = await axios.get('https://api.nexusvr.tech/experiences', {headers: {Authorization: localStorage.getItem('token')}});
-        setExperiences(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
     fetchExperiences();
   }, []);
 
@@ -37,7 +44,7 @@ const Experience = () => {
         </div>
       </div>
       <div className="container mx-auto px-4 mt-10">
-      <ExperienceGrid experiences={experiences} removeExperience={removeExperience} />
+      <ExperienceGrid experiences={experiences} fetchExperiences={fetchExperiences} deleteExperience={deleteExperience} />
       </div>
     </>
   );
