@@ -5,6 +5,11 @@ import axios from 'axios';
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
 
+
+  const removeExperience = (id) => {
+    setExperiences(experiences.filter(experience => experience.id !== id));
+  }
+
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
@@ -32,7 +37,7 @@ const Experience = () => {
         </div>
       </div>
       <div className="container mx-auto px-4 mt-10">
-        <ExperienceGrid experiences={experiences} />
+      <ExperienceGrid experiences={experiences} removeExperience={removeExperience} />
       </div>
     </>
   );
