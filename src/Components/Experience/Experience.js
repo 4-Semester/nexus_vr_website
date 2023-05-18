@@ -8,10 +8,14 @@ const Experience = () => {
 
   const deleteExperience = async (id) => {
     try {
-      await axios.delete(`https://api.nexusvr.tech/experiences/${id}`, {
-        headers: { Authorization: localStorage.getItem('token') },
-      });
-      fetchExperiences(); 
+      const response = await axios.delete(`https://api.nexusvr.tech/experiences/${id}`, {
+  headers: { Authorization: localStorage.getItem('token') },
+});
+console.log(response.data);
+  
+      // After deletion, filter the experiences array to remove the deleted item
+      const newExperiences = experiences.filter(experience => experience.id !== id);
+      setExperiences(newExperiences); 
     } catch (error) {
       console.error('Error deleting experience:', error);
     }
